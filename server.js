@@ -3,7 +3,7 @@ const express = require ('express');
 const server = express();
 const PORT = process.env.PORT || 3010;
 const cors = require('cors');
-//const weather = require('./asstes/weather.json');
+const weather = require('./asstes/weather.json');
 server.use(cors());
 
 // localHost:3001/test
@@ -45,7 +45,7 @@ server.get('/getWeather' , (req,res)=>{
 
 class Weather{
     constructor(data){
-        this.date = data.valid_data;
+        this.date = data.valid_date;
         this.description = data.weather.description;
     }
 }

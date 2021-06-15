@@ -1,5 +1,6 @@
 // Declare Express
 // Step 1
+require("dotenv").config();
 const express = require ('express');
 // Using All method of express inside server.
 // Step 2
@@ -7,7 +8,7 @@ const server = express();
 
 // Don't Forgot the instal npm i express
 // Port Value : 
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 const cors = require('cors');
 //Declre Weather.json
 const weather = require('./asstes/weather.json');

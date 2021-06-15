@@ -45,7 +45,7 @@ server.get('/', (req,res)=>{
 })*/
 
 server.get('/getWeather' , (req,res)=>{
-    const arrOfData = weather.data.filter(data => new Weather(data));
+    const arrOfData = weather.data.map(data => new Weather(data));
     res.send(arrOfData);
 })
 

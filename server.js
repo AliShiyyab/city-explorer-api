@@ -8,10 +8,10 @@ const server = express();
 // Don't Forgot the instal npm i express
 // Port Value : 
 const PORT = 3001;
-
+const cors = require('cors');
 //Declre Weather.json
-const weatheData = require('./asstes/weather.json');
-
+const weather = require('./asstes/weather.json');
+server.use(cors());
 // localHost:3001/test
 // Arrow function have 2 arguments:
 // request (الي وصلني),response(الي بدي ابعثه)
@@ -33,16 +33,28 @@ server.get('/', (req,res)=>{
 
 // Import Wather.Json (getWeather)
 // localHost:3001/getWeather
-server.get('/getWeather' , (req,res)=>{
+/*server.get('/getWeather' , (req,res)=>{
     let latReq = req.query.lat;
     let lonReq = req.query.lon;
     let searchQueryReq = req.query.searchQuery;
-    let data = weatheData.results.find(element => {
+    let data = weatheData.data.find(element => {
         if (element.lat == latReq && element.lon == element.lonReq && element.searchQuery == element.searchQueryReq){
-            send.res(element);
+            res.send(element);
         }
     });
+})*/
+
+server.get('/getWeather' , (req,res)=>{
+    const arrOfData = weather.data.filter(data => new Weather(data));
+    res.send(arrOfData);
 })
+
+class Weather{
+    constructor(data){
+        this.date = data.valid_data;
+        this.description = data.weather.description;
+    }
+}
 
 
 server.listen(PORT,()=>{
